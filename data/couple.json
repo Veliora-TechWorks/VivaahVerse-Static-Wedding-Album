@@ -1,0 +1,49 @@
+{
+  "bride": "Apurva Bhatambrekar",
+  "groom": "Shubham Shukla",
+  "weddingDate": "May 14, 2026",
+  "weddingLocation": "Swami Narayan Banquet Hall, Nashik",
+  "heroQuote": "Two souls, one heart, forever entwined.",
+  "story": [
+    {
+      "id": 1,
+      "phase": "First Meet",
+      "date": "March 2021",
+      "title": "A Chance Encounter",
+      "description": "It was a rainy evening at a mutual friend's art gallery in Mumbai. Priya was admiring a painting when Arjun accidentally spilled his coffee nearby. That clumsy moment turned into a three-hour conversation neither of them wanted to end.",
+      "icon": "✨"
+    },
+    {
+      "id": 2,
+      "phase": "Falling in Love",
+      "date": "August 2022",
+      "title": "The Journey Begins",
+      "description": "From late-night calls to weekend getaways in Coorg and Goa, every moment together felt like a page from a love story. They discovered shared dreams, laughter, and a love for filter coffee and old Bollywood songs.",
+      "icon": "💕"
+    },
+    {
+      "id": 3,
+      "phase": "Proposal",
+      "date": "December 2023",
+      "title": "He Asked, She Said Yes",
+      "description": "Under a canopy of fairy lights at their favorite rooftop restaurant in Jaipur, Arjun got down on one knee with a ring that sparkled like the stars above. Priya's tearful 'yes' echoed into the night sky.",
+      "icon": "💍"
+    },
+    {
+      "id": 4,
+      "phase": "Engagement",
+      "date": "January 2024",
+      "title": "Officially Forever",
+      "description": "Surrounded by family and closest friends, the engagement ceremony was a beautiful blend of tradition and joy. The exchange of rings marked the beginning of their forever, with blessings pouring in from every corner.",
+      "icon": "🌸"
+    },
+    {
+      "id": 5,
+      "phase": "Wedding",
+      "date": "February 14, 2025",
+      "title": "The Big Day",
+      "description": "At the majestic Grand Palace in Udaipur, with the Aravalli hills as their backdrop, Priya and Arjun took their sacred vows. Every ritual, every smile, every tear was a testament to a love story written in the stars.",
+      "icon": "👑"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Kavya & Rohan Kapoor",
+    "relation": "Best Friends",
+    "message": "Watching you two together has always felt like witnessing a fairytale. Today, that fairytale became real. Wishing you a lifetime of laughter, adventures, and endless love. You deserve every bit of happiness!",
+    "date": "February 14, 2025",
+    "avatar": "KR"
+  },
+  {
+    "id": 2,
+    "name": "Sunita Sharma",
+    "relation": "Bride's Mother",
+    "message": "My dearest Priya, watching you walk down the aisle was the most beautiful moment of my life. Arjun, welcome to our family. Take care of each other always. Our blessings are always with you both.",
+    "date": "February 14, 2025",
+    "avatar": "SS"
+  },
+  {
+    "id": 3,
+    "name": "Vikram Mehta",
+    "relation": "Groom's Father",
+    "message": "Arjun, you've found your soulmate. Priya, you've made our family complete. May your home always be filled with love, laughter, and the fragrance of fresh flowers. God bless you both abundantly.",
+    "date": "February 14, 2025",
+    "avatar": "VM"
+  },
+  {
+    "id": 4,
+    "name": "Aisha & Dev Malhotra",
+    "relation": "College Friends",
+    "message": "From late-night study sessions to this magical day — what a journey! Priya, you're glowing! Arjun, you're one lucky man. Here's to a lifetime of adventures together. Love you both to the moon!",
+    "date": "February 14, 2025",
+    "avatar": "AD"
+  },
+  {
+    "id": 5,
+    "name": "Nani Ji",
+    "relation": "Bride's Grandmother",
+    "message": "Beta, you look like a goddess today. May Ishwar always keep you both happy and healthy. I have waited for this day for so long. My heart is so full of joy. Live long and prosper together.",
+    "date": "February 14, 2025",
+    "avatar": "NJ"
+  },
+  {
+    "id": 6,
+    "name": "Rahul & Sneha Joshi",
+    "relation": "Cousins",
+    "message": "The most beautiful wedding we've ever attended! The venue, the decor, the couple — everything was absolutely perfect. Priya and Arjun, you two are made for each other. Congratulations and lots of love!",
+    "date": "February 14, 2025",
+    "avatar": "RS"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Meera Iyer",
+    "relation": "Family Friend",
+    "message": "I've known Priya since she was a little girl, and seeing her today as a beautiful bride brought tears to my eyes. Arjun, you've won the heart of a truly wonderful person. Cherish her always. Best wishes!",
+    "date": "February 14, 2025",
+    "avatar": "MI"
+  },
+  {
+    "id": 8,
+    "name": "The Gupta Family",
+    "relation": "Neighbors",
+    "message": "What a spectacular celebration! The entire neighborhood has been buzzing with excitement. Priya and Arjun, may your love story inspire everyone around you. Wishing you joy, peace, and prosperity always!",
+    "date": "February 14, 2025",
+    "avatar": "GF"
+  }
+]
