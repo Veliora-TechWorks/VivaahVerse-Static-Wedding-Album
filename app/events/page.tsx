@@ -9,19 +9,21 @@ import Lightbox from "@/components/Lightbox";
 
 /* ─── Accent colours per event ──────────────────────────────── */
 const ACCENTS: Record<string, { hex: string; pill: string; glow: string }> = {
-  Haldi:     { hex: "#F59E0B", pill: "bg-amber-50 text-amber-700 border-amber-200",    glow: "rgba(245,158,11,0.25)" },
-  Mehendi:   { hex: "#10B981", pill: "bg-emerald-50 text-emerald-700 border-emerald-200", glow: "rgba(16,185,129,0.25)" },
-  Sangeet:   { hex: "#A855F7", pill: "bg-purple-50 text-purple-700 border-purple-200",  glow: "rgba(168,85,247,0.25)" },
-  Wedding:   { hex: "#F43F5E", pill: "bg-rose-50 text-rose-700 border-rose-200",        glow: "rgba(244,63,94,0.25)" },
-  Reception: { hex: "#6B2737", pill: "bg-amber-50 text-amber-800 border-amber-200",    glow: "rgba(107,39,55,0.25)" },
+  "Mehendi Ceremony": { hex: "#4a7c59", pill: "bg-emerald-50 text-emerald-700 border-emerald-200", glow: "rgba(74,124,89,0.25)"   },
+  "Seemant Pujan":    { hex: "#c2410c", pill: "bg-orange-50 text-orange-700 border-orange-200",   glow: "rgba(194,65,12,0.25)"  },
+  "Haldi Ceremony":   { hex: "#d97706", pill: "bg-amber-50 text-amber-700 border-amber-200",      glow: "rgba(217,119,6,0.25)"  },
+  "Sangeet Night":    { hex: "#9333ea", pill: "bg-purple-50 text-purple-700 border-purple-200",   glow: "rgba(147,51,234,0.25)" },
+  "Lagna — Wedding":  { hex: "#be123c", pill: "bg-rose-50 text-rose-700 border-rose-200",         glow: "rgba(190,18,60,0.25)"  },
+  "Reception":        { hex: "#0369a1", pill: "bg-sky-50 text-sky-700 border-sky-200",            glow: "rgba(3,105,161,0.25)"  },
 };
 
 const IMG_SEEDS: Record<string, string> = {
-  Haldi:     "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80",
-  Mehendi:   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80",
-  Sangeet:   "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&q=80",
-  Wedding:   "https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80",
-  Reception: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80",
+  "Mehendi Ceremony": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80",
+  "Seemant Pujan":    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80",
+  "Haldi Ceremony":   "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80",
+  "Sangeet Night":    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&q=80",
+  "Lagna — Wedding":  "https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80",
+  "Reception":        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80",
 };
 
 /* ─── Gallery modal ─────────────────────────────────────────── */
@@ -304,14 +306,14 @@ function MobileEvents({ onOpenGallery }: { onOpenGallery: (name: string) => void
                       <div className="pt-4 mt-4 border-t border-[#EDD9A3]/40">
                         <div className="grid grid-cols-2 gap-3">
                           {[
-                            { label: "Date", value: event.date, icon: "📅" },
-                            { label: "Time", value: event.time, icon: "⏰" },
-                            { label: "Venue", value: event.location, icon: "📍" },
-                            { label: "Dress Code", value: "Traditional Attire", icon: "👗" },
+                            { label: "Date",       value: event.date,      icon: "📅" },
+                            { label: "Time",       value: event.time,      icon: "⏰" },
+                            { label: "Venue",      value: event.location,  icon: "📍" },
+                            { label: "Dress Code", value: event.dresscode, icon: "👗" },
                           ].map((d) => (
                             <div key={d.label} className="bg-[#FDF8F2] rounded-2xl p-3">
                               <p className="text-[9px] tracking-widest uppercase text-[#1C1C1E]/40 mb-1">{d.icon} {d.label}</p>
-                              <p className="text-[#1C1C1E]/70 text-xs font-light leading-snug">{d.value}</p>
+                              <p className="text-[#1C1C1E]/70 text-xs font-light leading-snug whitespace-pre-line">{d.value}</p>
                             </div>
                           ))}
                         </div>
@@ -417,6 +419,9 @@ function TabletEvents({ onOpenGallery }: { onOpenGallery: (name: string) => void
                           </div>
                           <div className="flex items-start gap-2 text-[10px] text-[#1C1C1E]/60">
                             <span>📍</span><span className="leading-snug">{event.location}</span>
+                          </div>
+                          <div className="flex items-start gap-2 text-[10px] text-[#1C1C1E]/60">
+                            <span>👗</span><span className="leading-snug whitespace-pre-line">{event.dresscode}</span>
                           </div>
                         </div>
                         <div className="flex flex-wrap gap-1 mt-3">
@@ -559,15 +564,16 @@ function DesktopEvents({ onOpenGallery }: { onOpenGallery: (name: string) => voi
               </div>
 
               {/* Info grid */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 {[
-                  { icon: "📅", label: "Date", value: event.date },
-                  { icon: "⏰", label: "Time", value: event.time },
-                  { icon: "📍", label: "Venue", value: event.location },
+                  { icon: "📅", label: "Date",       value: event.date      },
+                  { icon: "⏰", label: "Time",       value: event.time      },
+                  { icon: "📍", label: "Venue",      value: event.location  },
+                  { icon: "👗", label: "Dress Code", value: event.dresscode },
                 ].map((d) => (
                   <div key={d.label} className="bg-white rounded-2xl p-4 border border-[#EDD9A3]/30 shadow-sm">
                     <p className="text-[9px] tracking-widest uppercase text-[#1C1C1E]/40 mb-1">{d.icon} {d.label}</p>
-                    <p className="text-[#1C1C1E]/70 text-sm font-light leading-snug">{d.value}</p>
+                    <p className="text-[#1C1C1E]/70 text-sm font-light leading-snug whitespace-pre-line">{d.value}</p>
                   </div>
                 ))}
               </div>
