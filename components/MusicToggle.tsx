@@ -20,9 +20,9 @@ export default function MusicToggle({ children }: { children?: React.ReactNode }
   }, []);
 
   useEffect(() => {
-    const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+    const audio = new Audio("/music/Background Music.mp3");
     audio.loop   = true;
-    audio.volume = 0.25;
+    audio.volume = 0.5;
     audioRef.current = audio;
 
     // Try immediate autoplay

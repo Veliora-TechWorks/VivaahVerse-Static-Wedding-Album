@@ -42,7 +42,7 @@ function HeroSection() {
   const op  = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[32vh] sm:h-[38vh] lg:h-[42vh] min-h-[200px] sm:min-h-[260px] flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative h-[32vh] sm:h-[38vh] lg:h-[42vh] min-h-[200px] sm:min-h-[260px] flex items-center justify-center overflow-hidden" style={{ position: "relative" }}>
       <motion.div style={{ y: bgY }} className="absolute inset-0 scale-110">
         <Image src={HERO_IMG} alt="Gallery" fill className="object-cover" priority unoptimized />
       </motion.div>
@@ -82,46 +82,173 @@ function HeroSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   FILTER BAR
+   FILTER DROPDOWN
 ───────────────────────────────────────────────────────────── */
 function FilterBar({ active, onChange, counts }: {
   active: string;
   onChange: (id: string) => void;
   counts: Record<string, number>;
 }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const activeEv = EVENTS.find((e) => e.id === active)!;
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const select = (id: string) => { onChange(id); setOpen(false); };
+
   return (
     <div className="sticky top-14 md:top-16 z-40 bg-[#FDF8F2]/95 backdrop-blur-xl border-b border-[#6B2737]/8 shadow-[0_2px_20px_rgba(107,39,55,0.06)]">
-      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-8 py-3 max-w-7xl mx-auto">
-        {EVENTS.map((ev) => {
-          const isActive = active === ev.id;
-          return (
+      <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between gap-4">
+
+          {/* Left: Filter label + dropdown */}
+          <div className="flex items-center gap-4">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-[#1C1C1E]/40 font-light shrink-0 hidden sm:block">
+              Category
+            </p>
+
+            {/* Dropdown trigger */}
+            <div ref={ref} className="relative">
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setOpen((o) => !o)}
+                className="flex items-center gap-3 pl-4 pr-3.5 py-3 rounded-2xl border bg-white shadow-sm hover:shadow-md transition-all duration-200 min-w-[200px]"
+                style={{
+                  borderColor: open ? activeEv.color : "#1C1C1E10",
+                  boxShadow: open ? `0 4px 24px ${activeEv.color}20` : undefined,
+                }}
+              >
+                {/* Icon */}
+                <span
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0"
+                  style={{ background: activeEv.color + "15" }}
+                >
+                  {activeEv.icon}
+                </span>
+
+                {/* Label + count */}
+                <div className="flex-1 text-left">
+                  <span className="block text-[11px] tracking-[0.1em] uppercase font-semibold text-[#1C1C1E]">
+                    {activeEv.label}
+                  </span>
+                  <span className="text-[9px] text-[#1C1C1E]/40 tabular-nums">
+                    {counts[active] ?? 0} photos
+                  </span>
+                </div>
+
+                {/* Chevron */}
+                <motion.svg
+                  animate={{ rotate: open ? 180 : 0 }}
+                  transition={{ duration: 0.25 }}
+                  width="16" height="16" viewBox="0 0 16 16" fill="none"
+                  className="text-[#1C1C1E]/35 shrink-0"
+                >
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </motion.svg>
+              </motion.button>
+
+              {/* Dropdown panel */}
+              <AnimatePresence>
+                {open && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute left-0 top-[calc(100%+12px)] w-72 bg-white rounded-2xl shadow-[0_12px_48px_rgba(0,0,0,0.15)] border border-[#1C1C1E]/8 overflow-hidden z-50"
+                  >
+                    {/* Header */}
+                    <div className="px-5 py-3 border-b border-[#1C1C1E]/8 bg-[#FDF8F2]">
+                      <p className="text-[9px] tracking-[0.4em] uppercase text-[#1C1C1E]/40 font-light">Select Category</p>
+                    </div>
+
+                    {/* Options */}
+                    <div className="py-2 max-h-[380px] overflow-y-auto">
+                      {EVENTS.map((ev, i) => {
+                        const isActive = active === ev.id;
+                        return (
+                          <motion.button
+                            key={ev.id}
+                            initial={{ opacity: 0, x: -12 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.04, duration: 0.25 }}
+                            whileHover={{ x: 4, backgroundColor: ev.color + "08" }}
+                            onClick={() => select(ev.id)}
+                            className="w-full flex items-center gap-3.5 px-5 py-3.5 transition-all duration-150"
+                            style={{ background: isActive ? ev.color + "12" : "transparent" }}
+                          >
+                            {/* Icon bubble */}
+                            <span
+                              className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 transition-transform duration-200"
+                              style={{ background: ev.color + "18" }}
+                            >
+                              {ev.icon}
+                            </span>
+
+                            {/* Label + count */}
+                            <div className="flex-1 text-left">
+                              <span
+                                className="block text-[11px] tracking-[0.08em] uppercase font-semibold leading-tight"
+                                style={{ color: isActive ? ev.color : "#1C1C1E" }}
+                              >
+                                {ev.label}
+                              </span>
+                              <span className="text-[9px] text-[#1C1C1E]/40 tabular-nums">
+                                {counts[ev.id] ?? 0} photos
+                              </span>
+                            </div>
+
+                            {/* Active indicator */}
+                            {isActive && (
+                              <motion.span
+                                initial={{ scale: 0, rotate: -90 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                                className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                                style={{ background: ev.color }}
+                              >
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                                  <path d="M2 5l2 2 4-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </motion.span>
+                            )}
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Right: Clear filter button */}
+          {active !== "All" && (
             <motion.button
-              key={ev.id}
-              whileTap={{ scale: 0.93 }}
-              onClick={() => onChange(ev.id)}
-              className="relative flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[10px] sm:text-[11px] tracking-[0.12em] uppercase font-medium whitespace-nowrap shrink-0 transition-all duration-300"
-              style={{
-                background: isActive ? ev.color : "transparent",
-                color: isActive ? "#fff" : "#1C1C1E77",
-                border: isActive ? "none" : "1px solid #1C1C1E12",
-              }}
+              initial={{ opacity: 0, scale: 0.85, x: 10 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.85, x: 10 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => onChange("All")}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[10px] tracking-[0.15em] uppercase font-medium border border-[#6B2737]/25 text-[#6B2737] hover:bg-[#6B2737]/8 hover:border-[#6B2737]/40 transition-all duration-200 shadow-sm"
             >
-              {isActive && (
-                <motion.span
-                  layoutId="filter-active"
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: ev.color }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{ev.icon}</span>
-              <span className="relative z-10">{ev.label}</span>
-              <span className="relative z-10 text-[9px] tabular-nums" style={{ opacity: 0.55 }}>
-                {counts[ev.id] ?? 0}
-              </span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M9 3L3 9M3 3l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Clear Filter</span>
             </motion.button>
-          );
-        })}
+          )}
+
+        </div>
       </div>
     </div>
   );

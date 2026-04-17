@@ -103,7 +103,7 @@ function GalleryModal({ eventName, onClose }: GalleryModalProps) {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setLightboxIndex(i)}
-                    className="relative aspect-square rounded-2xl overflow-hidden group cursor-zoom-in"
+                    className="relative block aspect-square rounded-2xl overflow-hidden group cursor-zoom-in"
                   >
                     <Image
                       src={img.thumb}
@@ -156,7 +156,7 @@ function EventsHero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[32vh] sm:h-[38vh] lg:h-[42vh] min-h-[200px] sm:min-h-[260px] flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative h-[32vh] sm:h-[38vh] lg:h-[42vh] min-h-[200px] sm:min-h-[260px] flex items-center justify-center overflow-hidden" style={{ position: "relative" }}>
       <motion.div style={{ y: bgY }} className="absolute inset-0 scale-110">
         <Image
           src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1920&q=85"

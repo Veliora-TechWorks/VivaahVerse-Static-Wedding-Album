@@ -842,7 +842,7 @@ export default function HomePage() {
           <div className="hidden md:grid gap-4" style={{ gridTemplateColumns: "repeat(4,1fr)", gridTemplateRows: "300px 260px" }}>
 
             {/* 0 — LARGE 2×2 */}
-            <FadeIn delay={0} className="col-span-2 row-span-2">
+            <FadeIn delay={0} className="col-span-2 row-span-2 h-full">
               <Link href="/events" className="block h-full">
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.4 }}
                   className="group relative h-full rounded-3xl overflow-hidden shadow-xl">
@@ -865,7 +865,7 @@ export default function HomePage() {
             </FadeIn>
 
             {/* 1 — TALL 1×2 */}
-            <FadeIn delay={0.1} className="col-span-1 row-span-2">
+            <FadeIn delay={0.1} className="col-span-1 row-span-2 h-full">
               <Link href="/events" className="block h-full">
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.4 }}
                   className="group relative h-full rounded-3xl overflow-hidden shadow-xl">
@@ -885,7 +885,7 @@ export default function HomePage() {
             </FadeIn>
 
             {/* 2 — SMALL 1×1 */}
-            <FadeIn delay={0.15} className="col-span-1 row-span-1">
+            <FadeIn delay={0.15} className="col-span-1 row-span-1 h-full">
               <Link href="/events" className="block h-full">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}
                   className="group relative h-full rounded-2xl overflow-hidden shadow-lg">
@@ -903,7 +903,7 @@ export default function HomePage() {
             </FadeIn>
 
             {/* 3 — SMALL 1×1 */}
-            <FadeIn delay={0.2} className="col-span-1 row-span-1">
+            <FadeIn delay={0.2} className="col-span-1 row-span-1 h-full">
               <Link href="/events" className="block h-full">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}
                   className="group relative h-full rounded-2xl overflow-hidden shadow-lg">
@@ -921,7 +921,7 @@ export default function HomePage() {
             </FadeIn>
 
             {/* 4 — WIDE 2×1 */}
-            <FadeIn delay={0.25} className="col-span-2 row-span-1">
+            <FadeIn delay={0.25} className="col-span-2 row-span-1 h-full">
               <Link href="/events" className="block h-full">
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}
                   className="group relative h-full rounded-2xl overflow-hidden shadow-lg">
